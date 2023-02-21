@@ -1,3 +1,127 @@
-.bg {
-  background-color: #1c1c1c;
+.main {
+  display: flex;
+  flex-direction: column;
+  width: 1440px;
+  justify-content: center;
+  align-self: center;
+}
+
+.mainContent {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.container {
+  background-color: var(--gray-500);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: max-content;
+  border-radius: 12px;
+  padding: 42px;
+  gap: 42px;
+}
+
+.leftCol {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+}
+
+.rightCol {
+  flex: 1 ;
+  width: max-content;
+  background-color: var(--gray-800);
+  height: max-content;
+  border-radius: 8px;
+  padding: 32px 32px;
+}
+
+.banner {
+  border-radius: 12px;
+}
+
+.title {
+  color: var(--green-500);
+  margin: 0 0 4px;
+}
+.subtitle {
+  color: var(--gray-200);
+  font-size: 18px;
+  font-weight: 400;
+  margin: 0;
+}
+
+.description {
+  padding: 16px;
+  border: 1px solid var(--green-500);
+  border-radius: 6px;
+  margin-bottom: 38px;
+}
+
+.headerContent{
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  width: 100%;
+  height: fit-content;
+  margin-bottom: 32px
+}
+.titleContent {
+  height: max-content;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 0;
+}
+.rating{
+  height: fit-content;
+  color: var(--white);
+}
+
+.shuffleButton {
+  background-color: var(--green-500);
+  color: var(--white);
+
+  padding: 20px;
+  width: 100%;
+
+  border: none;
+  border-radius: 6px;
+
+  transition: all 0.2s ease-out;
+}
+
+.shuffleButton:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+  background-color: var(--green-800);
+}
+
+.trailerContainer {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 34px;
+}
+
+.buttonContainer {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 315px;
+  gap: 28px;
+}
+
+.buttonStream {
+  height: 64px;
+  border: none;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
