@@ -1,13 +1,11 @@
 import { ReactNode } from 'react'
+import styles from './globals.module.css'
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html>
       <head />
-      <body>
-        <h1>Header</h1>
-        {children}
-      </body>
+      <body className={styles.body}>{children}</body>
     </html>
   )
 }
