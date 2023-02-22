@@ -36,7 +36,6 @@ export default function Home() {
 
   function handleButtonClick() {
     setRandomNumber(generateRandomNumber())
-    console.log(randomNumber, data)
     fetchData()
   }
 
@@ -44,7 +43,6 @@ export default function Home() {
     axios
       .request(options)
       .then(function (response) {
-        console.log(response.data)
         setData(response.data)
       })
       .catch(function (error) {
