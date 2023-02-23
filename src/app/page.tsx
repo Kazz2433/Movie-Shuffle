@@ -148,6 +148,28 @@ export default function Home() {
   function handleHulu() {
     window.open(dataHulu?.link, '_blank')
   }
+
+  function githuhRepo() {
+    window.open('https://github.com/revogabe/Movie-Shuffle', '_blank')
+  }
+
+  function projectWeek() {
+    window.open('https://github.com/revogabe', '_blank')
+  }
+
+  function linkedinDaniel() {
+    window.open(
+      'https://www.linkedin.com/in/daniel-gabriel-70a565267/',
+      '_blank',
+    )
+  }
+
+  function linkedinArmitage() {
+    window.open(
+      'https://www.linkedin.com/in/kelvin-quid%C3%A1-44b563163/',
+      '_blank',
+    )
+  }
   // skeleton loading antes de carregar os dados
   return (
     <main className={styles.main}>
@@ -233,18 +255,24 @@ export default function Home() {
               </div>
             </div>
             <div className={styles.buttonsSocial}>
-              <button className={styles.buttonProject}>
+              <button onClick={projectWeek} className={styles.buttonProject}>
                 📆 ONE WEEK PROJECT
               </button>
-              <button className={styles.buttonGithub}>
+              <button onClick={githuhRepo} className={styles.buttonGithub}>
                 <Image src={gitSVG} alt="" width={24} />
                 Repository
               </button>
-              <button className={styles.buttonLinkedin}>
+              <button
+                onClick={linkedinDaniel}
+                className={styles.buttonLinkedin}
+              >
                 <Image src={linkedinSVG} alt="" width={24} />
                 Daniel Gabriel
               </button>
-              <button className={styles.buttonLinkedin}>
+              <button
+                onClick={linkedinArmitage}
+                className={styles.buttonLinkedin}
+              >
                 <Image src={linkedinSVG} alt="" width={24} />
                 Kelvin Quida
               </button>
