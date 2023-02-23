@@ -1,9 +1,13 @@
+
 .main {
   display: flex;
   flex-direction: column;
-  width: 1440px;
+  max-width: 1440px;
+  width: 100%;
+  font-family: 'Poppins', sans-serif;
   justify-content: center;
-  align-self: center;
+  margin: 0 auto;
+  padding: 0 24px;
 }
 
 .mainContent {
@@ -14,34 +18,64 @@
 
 .container {
   background-color: var(--gray-500);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  width: 100%;
   height: max-content;
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+  justify-content: center;
   border-radius: 12px;
-  padding: 42px;
-  gap: 42px;
+  padding: 24px;
+  gap: 24px;
+  max-width: 1440px;
+}
+
+.iframe {
+  width: 562px;
+  height: 315px;
 }
 
 .leftCol {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 40px;
+  justify-content: space-between;
+  height: 100%;
+  max-width: 100%;
+  gap: 24px;
 }
 
-.rightCol {
+.buttonsSocial {
+  display: flex;
+  gap: 16px;
+  width: 100%;
+}
+
+.rightContainer{
   flex: 1 ;
-  width: max-content;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 24px;
+  
+}
+.rightCol {
+  flex-direction: column;
   background-color: var(--gray-800);
-  height: max-content;
+  height: auto;
+  display: flex;
+  justify-content: start;
   border-radius: 8px;
-  padding: 32px 32px;
+  padding: 24px;
+  max-width: 100%;
 }
 
 .banner {
   border-radius: 12px;
+  max-width: 100%;
+  max-height: 535px;
 }
 
 .title {
@@ -55,11 +89,19 @@
   margin: 0;
 }
 
+.subtitleDescription {
+  color: var(--gray-200);
+  font-size: 14px;
+  line-height: 24px;
+  font-weight: 400;
+  margin: 0;
+}
+
 .description {
   padding: 16px;
   border: 1px solid var(--green-500);
   border-radius: 6px;
-  margin-bottom: 38px;
+  margin-bottom: 24px;
 }
 
 .headerContent{
@@ -68,10 +110,15 @@
   justify-content: space-between;
   width: 100%;
   height: fit-content;
-  margin-bottom: 32px
+  margin-bottom: 12px
 }
+.contentStars {
+  display: flex;
+  height: 20px;
+}
+
 .titleContent {
-  height: max-content;
+  height: auto;
   display: flex;
   flex-direction: column;
   align-items: start;
@@ -80,16 +127,30 @@
 .rating{
   height: fit-content;
   color: var(--white);
+  display: flex;
+  align-self: center;
+}
+
+.rating::before{
+  content: '⭐';
+  font-size: 16px;
+  height: fit-content;
+  color: var(--white);
+  margin-right: 4px;
 }
 
 .shuffleButton {
-  background-color: var(--green-500);
-  color: var(--white);
+  background: linear-gradient(to right, #000000, #0f0f0f);
+  color: var(--green-500);
+  filter: brightness(0.7);
+  font-weight: 900;
+  font-family: 'Poppins', sans-serif;
 
-  padding: 20px;
+  padding: 16px;
   width: 100%;
+  height: 63px;
 
-  border: none;
+  border: 1px solid var(--green-500);
   border-radius: 6px;
 
   transition: all 0.2s ease-out;
@@ -98,7 +159,9 @@
 .shuffleButton:hover {
   cursor: pointer;
   transform: scale(1.05);
-  background-color: var(--green-800);
+  background: linear-gradient(to right, var(--green-500), var(--green-800));
+  color: var(--gray-800);
+  filter: brightness(1.35) saturate(1.5);
 }
 
 .trailerContainer {
@@ -115,13 +178,520 @@
   justify-content: center;
   height: 315px;
   gap: 28px;
+  
 }
 
-.buttonStream {
-  height: 64px;
-  border: none;
-  border-radius: 4px;
+.buttonGithub {
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 12px;
+  text-transform: uppercase;
+  font-weight: 900;
+  font-family: 'Poppins', sans-serif;
+
+  background-color: var(--white);
+  color: var(--gray-800);
+
+  padding: 20px;
+  width: 100%;
+
+  border: none;
+  border-radius: 6px;
+
+  transition: all 0.2s ease-out;
+}
+
+.buttonGithub:hover {
+  cursor: pointer;
+  filter: invert(1);
+  transform: scale(1.05);
+}
+
+.buttonLinkedin {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  text-transform: uppercase;
+  font-weight: 900;
+  font-family: 'Poppins', sans-serif;
+
+  filter: brightness(0.75);
+  background: linear-gradient(to right, rgb(7, 17, 39), #103053);
+  color: var(--white);
+
+  padding: 20px;
+  width: 100%;
+
+  border: none;
+  border-radius: 6px;
+
+  transition: all 0.2s ease-out;
+}
+
+.buttonLinkedin:hover {
+  cursor: pointer;
+  filter: brightness(1.45) saturate(1.5);
+  transform: scale(1.05);
+}
+
+.buttonProject {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  text-transform: uppercase;
+  font-weight: 900;
+  font-family: 'Poppins', sans-serif;
+
+  filter: brightness(0.75);
+  background: linear-gradient(to right, rgb(165, 9, 48), #e20c42);
+  color: var(--white);
+
+  padding: 20px;
+  width: 100%;
+
+  border: none;
+  border-radius: 6px;
+
+  transition: all 0.2s ease-out;
+}
+
+.buttonProject:hover {
+  cursor: pointer;
+  filter: brightness(1.45) saturate(1.5);
+  transform: scale(1.05);
+}
+
+/* Efeito de skelleton*/
+.skeletonBanner {
+  width: 380px;
+  height: 562px;
+  border-radius: 12px;
+  border: 1px solid #ffffff09;
+
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.3) 0%,
+    rgba(36, 36, 36, 0.3) 50%,
+    rgba(0, 0, 0, 0.3) 100%
+  );
+
+  animation: animatedSkeleton 1.8s ease-in-out infinite;
+}
+
+@keyframes animatedSkeleton {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: calc(200px + 100%) 0;
+  }
+}
+
+.skeletonButton {
+  width: 380px;
+  height: 562px;
+  border-radius: 12px;
+  border: 1px solid #ffffff09;
+
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.3) 0%,
+    rgba(36, 36, 36, 0.3) 50%,
+    rgba(0, 0, 0, 0.3) 100%
+  );
+
+  animation: animatedSkeleton 1.8s ease-in-out infinite;
+}
+
+@keyframes animatedSkeleton {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: calc(200px + 100%) 0;
+  }
+}
+
+
+.skeletonButton {
+  width: 380px;
+  height: 562px;
+  border-radius: 12px;
+  border: 1px solid #ffffff09;
+
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.3) 0%,
+    rgba(36, 36, 36, 0.3) 50%,
+    rgba(0, 0, 0, 0.3) 100%
+  );
+
+  animation: animatedSkeleton 1.8s ease-in-out infinite;
+}
+
+@keyframes animatedSkeleton {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: calc(200px + 100%) 0;
+  }
+}
+
+
+.skeletonContent {
+  width: calc(100% + 440px);
+  height: 44px;
+  border-radius: 4px;
+  border: 1px solid #ffffff09;
+
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.3) 0%,
+    rgba(36, 36, 36, 0.3) 50%,
+    rgba(0, 0, 0, 0.3) 100%
+  );
+
+  animation: animatedSkeleton 1.8s ease-in-out infinite;
+
+  margin-bottom: 12px;
+}
+
+@keyframes animatedSkeleton {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: calc(200px + 100%) 0;
+  }
+}
+
+.skeletonSubtitle {
+  width: calc(100% + 240px);
+  height: 40px;
+  border-radius: 4px;
+  border: 1px solid #ffffff09;
+
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.3) 0%,
+    rgba(36, 36, 36, 0.3) 50%,
+    rgba(0, 0, 0, 0.3) 100%
+  );
+
+  animation: animatedSkeleton 1.8s ease-in-out infinite;
+
+}
+
+@keyframes animatedSkeleton {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: calc(200px + 100%) 0;
+  }
+}
+
+
+.skeletonRating {
+  width: 80px;
+  height: 40px;
+  border-radius: 4px;
+  border: 1px solid #ffffff09;
+
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.3) 0%,
+    rgba(36, 36, 36, 0.3) 50%,
+    rgba(0, 0, 0, 0.3) 100%
+  );
+
+  animation: animatedSkeleton 1.8s ease-in-out infinite;
+
+}
+
+@keyframes animatedSkeleton {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: calc(200px + 100%) 0;
+  }
+}
+
+.skeletonDescription {
+  width: 840px;
+  height: 44px;
+  border-radius: 4px;
+  border: 1px solid #ffffff09;
+
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.3) 0%,
+    rgba(36, 36, 36, 0.3) 50%,
+    rgba(0, 0, 0, 0.3) 100%
+  );
+
+  animation: animatedSkeleton 1.8s ease-in-out infinite;
+
+}
+
+@keyframes animatedSkeleton {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: calc(200px + 100%) 0;
+  }
+}
+
+
+.skeletonTrailer {
+  width: 560px;
+  height: 315px;
+  border-radius: 8px;
+  border: 1px solid #ffffff09;
+
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.3) 0%,
+    rgba(36, 36, 36, 0.3) 50%,
+    rgba(0, 0, 0, 0.3) 100%
+  );
+
+  animation: animatedSkeleton 1.8s ease-in-out infinite;
+
+}
+
+@keyframes animatedSkeleton {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: calc(200px + 100%) 0;
+  }
+}
+
+@media (max-width: 1280px) {
+  .main {
+  display: flex;
+  flex-direction: column;
+  max-width: 1280px;
+  width: 100%;
+  font-family: 'Poppins', sans-serif;
+  justify-content: center;
+  margin: 0 auto;
+  padding: 0 8px;
+}
+
+.mainContent {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.container {
+  background-color: var(--gray-500);
+  width: 100%;
+  height: max-content;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+  border-radius: 12px;
+  padding: 24px;
+  gap: 24px;
+  max-width: 1440px;
+}
+
+.iframe {
+  width: 100%;
+  height: 562px;
+}
+
+.leftCol {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: fit-content;
+  width: fit-content;
+  align-items: center;
+  max-width: 720px;
+  align-self: center;
+  margin-top: 32px;
+  margin-bottom: 32px;
+  gap: 32px;
+}
+
+.buttonsSocial {
+  display: flex;
+  gap: 16px;
+  width: 100%;
+}
+
+.rightContainer{
+  flex: 1 ;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 24px;
+  
+}
+.rightCol {
+  flex-direction: column;
+  background-color: var(--gray-800);
+  height: auto;
+  display: flex;
+  justify-content: start;
+  border-radius: 8px;
+  padding: 24px;
+  max-width: 100%;
+}
+
+.banner {
+  border-radius: 12px;
+  width: 100%;
+  min-width: 280px;
+  min-height: 420px;
+}
+
+
+.trailerContainer {
+  display: flex;
+  align-items: start;
+  flex-direction: column;
+  width: 100%;
+  align-items: stretch;
+  justify-content: space-between;
+  gap: 34px;
+}
+
+.shuffleButton {
+  max-width: 520px;
+}
+.buttonsSocial {
+  display: flex;
+  flex-direction: column;
+}
+}
+
+@media (max-width: 640px) {
+  .main {
+  display: flex;
+  flex-direction: column;
+  min-width: 320px;
+  width: 100%;
+  font-family: 'Poppins', sans-serif;
+  justify-content: center;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.mainContent {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.container {
+  background: none;
+  width: 100%;
+  height: max-content;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+  border-radius: none;
+  padding: 0px;
+  gap: 24px;
+  max-width: 1440px;
+  margin-top: -24px;
+}
+
+.iframe {
+  width: 100%;
+  height: 320px;
+}
+
+.leftCol {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: fit-content;
+  width: fit-content;
+  align-items: center;
+  max-width: 720px;
+  align-self: center;
+  margin-top: 32px;
+  margin-bottom: 32px;
+  gap: 32px;
+}
+
+.buttonsSocial {
+  display: flex;
+  gap: 16px;
+  width: 100%;
+}
+
+.rightContainer{
+  flex: 1 ;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 24px;
+  
+}
+.rightCol {
+  flex-direction: column;
+  background: none;
+  height: auto;
+  display: flex;
+  justify-content: start;
+  border-radius: 8px;
+  padding: 0px;
+  max-width: 100%;
+  gap: 18px;
+}
+
+.banner {
+  border-radius: 12px;
+  width: 100%;
+  height: 100%;
+}
+
+
+.trailerContainer {
+  display: flex;
+  align-items: start;
+  flex-direction: column;
+  width: 100%;
+  align-items: stretch;
+  justify-content: space-between;
+  gap: 34px;
+}
+
+.shuffleButton {
+  max-width: 520px;
+}
+.buttonsSocial {
+  margin-top: 12px;
+  display: flex;
+  gap: 24px;
+  flex-direction: column;
+}
+.buttonsSocial::before {
+  content: '';
+  background: #ffffff23;
+  width: 100%;
+  height: 1px;
+  border-radius: 999px;
+  margin-bottom: 12px;
+}
 }

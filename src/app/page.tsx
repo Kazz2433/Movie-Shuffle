@@ -4,9 +4,11 @@ import { Header } from '@/components/Header'
 import styles from './page.module.css'
 import axios from 'axios'
 import Image from 'next/image'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { ButtonStream } from '@/components/ButtonStream'
 
-import netflixSVG from '../assets/netflix.svg'
+import gitSVG from '../assets/Octicons-mark-github.svg'
+import linkedinSVG from '../assets/linkedin.svg'
 
 interface User {
   image: string
@@ -39,6 +41,7 @@ export default function Home() {
     fetchData()
   }
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   async function fetchData() {
     axios
       .request(options)
@@ -50,6 +53,16 @@ export default function Home() {
       })
   }
 
+  // função de shuffle quando a pagina carregar
+  useEffect(() => {
+    fetchData()
+  }, [fetchData])
+
+  function handleGithubClick() {
+    window.open('https://github.com/revogabe', '_blank')
+  }
+
+  // skeleton loading antes de carregar os dados
   return (
     <main className={styles.main}>
       <Header />
@@ -65,7 +78,7 @@ export default function Home() {
                 height={562}
               />
             ) : (
-              <p>Carregando...</p>
+              <div className={styles.skeletonBanner} />
             )}
 
             <button
@@ -75,58 +88,78 @@ export default function Home() {
               SHUFFLE
             </button>
           </div>
-          <div className={styles.rightCol}>
-            <div className={styles.headerContent}>
-              <div className={styles.titleContent}>
+          <div className={styles.rightContainer}>
+            <div className={styles.rightCol}>
+              <div className={styles.headerContent}>
+                <div className={styles.titleContent}>
+                  {data ? (
+                    <h2 className={styles.title}>{data.title}</h2>
+                  ) : (
+                    <div className={styles.skeletonContent} />
+                  )}
+                  {data ? (
+                    <p className={styles.subtitle}>{data.director}</p>
+                  ) : (
+                    <div className={styles.skeletonSubtitle} />
+                  )}
+                </div>
+                <div className={styles.contentStars}>
+                  {data ? (
+                    <h2 className={styles.rating}>{data.rating}</h2>
+                  ) : (
+                    <div className={styles.skeletonRating} />
+                  )}
+                </div>
+              </div>
+              <div className={styles.description}>
                 {data ? (
-                  <h2 className={styles.title}>{data.title}</h2>
+                  <h2 className={styles.subtitleDescription}>
+                    {data.description}
+                  </h2>
                 ) : (
-                  <p>Carregando...</p>
-                )}
-                {data ? (
-                  <p className={styles.subtitle}>{data.director}</p>
-                ) : (
-                  <p>Carregando...</p>
+                  <div className={styles.skeletonDescription} />
                 )}
               </div>
-              <div className={styles.titleContent}>
+              <div className={styles.trailerContainer}>
                 {data ? (
-                  <h2 className={styles.rating}>{data.rating}</h2>
+                  <iframe
+                    style={{ borderRadius: 6 }}
+                    width="560"
+                    height="315"
+                    className={styles.iframe}
+                    src={data.trailer}
+                    title="YouTube video player"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  ></iframe>
                 ) : (
-                  <p>Carregando...</p>
+                  <div className={styles.skeletonTrailer} />
                 )}
+                <div className={styles.buttonContainer}>
+                  <ButtonStream />
+                </div>
               </div>
             </div>
-            <div className={styles.description}>
-              {data ? (
-                <h2 className={styles.subtitle}>{data.description}</h2>
-              ) : (
-                <p>Carregando...</p>
-              )}
-            </div>
-            <div className={styles.trailerContainer}>
-              {data ? (
-                <iframe
-                  style={{ borderRadius: 6 }}
-                  width="560"
-                  height="315"
-                  src={data.trailer}
-                  title="YouTube video player"
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                ></iframe>
-              ) : (
-                <p>Carregando...</p>
-              )}
-              <div className={styles.buttonContainer}>
-                <button className={styles.buttonStream}>
-                  <Image src={netflixSVG} alt="Netflix Logo" width={64} />
-                </button>
-                <button className={styles.buttonStream}>Prime</button>
-                <button className={styles.buttonStream}>HBO Max</button>
-                <button className={styles.buttonStream}>Hulu</button>
-              </div>
+            <div className={styles.buttonsSocial}>
+              <button className={styles.buttonProject}>
+                📆 ONE WEEK PROJECT
+              </button>
+              <button
+                onClick={handleGithubClick}
+                className={styles.buttonGithub}
+              >
+                <Image src={gitSVG} alt="" width={24} />
+                Repository
+              </button>
+              <button className={styles.buttonLinkedin}>
+                <Image src={linkedinSVG} alt="" width={24} />
+                Daniel Gabriel
+              </button>
+              <button className={styles.buttonLinkedin}>
+                <Image src={linkedinSVG} alt="" width={24} />
+                Kelvin Quida
+              </button>
             </div>
           </div>
         </div>
