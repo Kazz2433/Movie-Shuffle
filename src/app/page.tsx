@@ -53,10 +53,10 @@ export default function Home() {
       })
   }
 
-  // função de shuffle quando a pagina carregar
   useEffect(() => {
     fetchData()
-  }, [fetchData])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   function handleGithubClick() {
     window.open('https://github.com/revogabe', '_blank')

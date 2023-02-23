@@ -660,6 +660,11 @@
   gap: 18px;
 }
 
+.buttonLoading {
+  cursor: not-allowed;
+  background: #ffffff23;
+}
+
 .banner {
   border-radius: 12px;
   width: 100%;
