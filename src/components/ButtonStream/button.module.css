@@ -53,6 +53,7 @@
   background: linear-gradient(to right, #290246, #8a2be2);
   transition: all 0.2s ease-out;
 }
+
 .buttonHbo:hover{
   cursor: pointer;
   filter: brightness(1.45) saturate(1.5);

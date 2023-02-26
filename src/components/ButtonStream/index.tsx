@@ -7,10 +7,10 @@ import hboSVG from '../../assets/HBO_Max_Logo.svg'
 import huluSVG from '../../assets/Hulu_logo_2017.svg'
 
 type Props = {
-  netflix: () => void
-  prime: () => void
-  hulu: () => void
-  hbo: () => void
+  netflix?: () => void
+  prime?: () => void
+  hulu?: () => void
+  hbo?: () => void
 }
 
 export function ButtonStream({ netflix, prime, hulu, hbo }: Props) {
