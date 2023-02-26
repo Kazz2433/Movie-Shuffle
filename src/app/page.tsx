@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import axios from 'axios'
 import Image from 'next/image'
 
@@ -28,22 +28,32 @@ interface RandomMovieProps {
 }
 
 export default function Home() {
-  // STATE SHUFFLE
+  useEffect(() => {
+    getRandomMovie()
+    requestApiShuffle()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
-  const [randomMovie, setRandomMovie] = useState<RandomMovieProps>()
-  const [trailer, setTrailer] = useState<string>()
+  const listMovies = [
+    { title: 'The Godfather', year: '1972' },
+    { title: 'The Shawshank Redemption', year: '1994' },
+    { title: 'The Dark Knight', year: '2008' },
+    { title: 'The Godfather: Part II', year: '1974' },
+    { title: 'The Lord of the Rings: The Return of the King', year: '2003' },
+    { title: 'Pulp Fiction', year: '1994' },
+    { title: 'Schindler’s List', year: '1993' },
+    { title: 'The Good, the Bad and the Ugly', year: '1966' },
+  ]
+
+  useEffect(() => {
+    requestTrailer()
+  }, [requestTrailer])
+
+  const [randomMovie, setRandomMovie] = useState<RandomMovieProps>(
+    listMovies[Math.floor(Math.random() * listMovies.length)],
+  )
   const [shuffleMovie, setShuffleMovie] = useState<ShuffleProps>()
-
-  const optionsTrailer = {
-    method: 'GET',
-    url: 'https://movies-tv-shows-database.p.rapidapi.com/',
-    params: { movieid: shuffleMovie?.imdbID },
-    headers: {
-      Type: 'get-movie-details',
-      'X-RapidAPI-Key': 'b5b64085famshd1a45bf01935c88p1c06cbjsn6458edcf15a2',
-      'X-RapidAPI-Host': 'movies-tv-shows-database.p.rapidapi.com',
-    },
-  }
+  const [trailer, setTrailer] = useState<string>()
 
   // REQUEST API SHUFFLE
   async function getRandomMovie() {
@@ -58,7 +68,7 @@ export default function Home() {
   }
 
   async function requestApiShuffle() {
-    await axios // https://www.omdbapi.com/?i=tt3896198&apikey=2b3d0c1c
+    await axios
       .request({
         method: 'GET',
         url: 'https://www.omdbapi.com/',
@@ -71,25 +81,35 @@ export default function Home() {
       .then(function (response) {
         console.log(response.data)
         setShuffleMovie(response.data)
-        requestTrailer()
       })
   }
 
-  function requestTrailer() {
-    axios
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  async function requestTrailer() {
+    await axios
       .request(optionsTrailer)
       .then(function (response) {
-        console.log(response.data)
-        setTrailer(response.data.youtube_trailer_key)
+        setTrailer(response.data?.result?.youtubeTrailerVideoId)
       })
       .catch(function (error) {
         console.error(error)
       })
   }
 
+  const optionsTrailer = {
+    method: 'GET',
+    url: 'https://streaming-availability.p.rapidapi.com/v2/get/basic',
+    params: { country: 'us', imdb_id: shuffleMovie?.imdbID },
+    headers: {
+      'X-RapidAPI-Key': '4a48ec8ffamsh287812e16b63278p1e53efjsnda9233c75af2',
+      'X-RapidAPI-Host': 'streaming-availability.p.rapidapi.com',
+    },
+  }
+
   async function handleButtonClick() {
-    await getRandomMovie()
-    await requestApiShuffle()
+    getRandomMovie()
+    requestApiShuffle()
+    requestTrailer()
   }
 
   function githuhRepo() {
