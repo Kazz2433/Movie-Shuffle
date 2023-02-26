@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import axios from 'axios'
 import Image from 'next/image'
 
@@ -11,105 +11,95 @@ import gitSVG from '@/assets/Octicons-mark-github.svg'
 import linkedinSVG from '@/assets/linkedin.svg'
 import { ButtonStream } from '@/components/ButtonStream'
 
-interface ShuffleProps {
-  Poster: string
-  Title: string
-  Year: string
-  Director: string
-  Plot: string
-  Metascore: string
-  Genre: string
-  imdbID: string
+interface MovieIDProps {
+  id: number
 }
-
-interface RandomMovieProps {
-  title: string
-  year: string
+interface MovieDescProps {
+  original_title: string
+  poster_path: string
+  overview: string
+  release_date: string
+  vote_average: number
+  imdb_id: string
+  genres: [{ id: number; name: string }]
+  runtime: number
+  videos: {
+    results: [
+      {
+        id: string
+        key: string
+        name: string
+        site: string
+        type: string
+        official: boolean
+      },
+    ]
+  }
 }
 
 export default function Home() {
-  useEffect(() => {
-    getRandomMovie()
-    requestApiShuffle()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  const [randomPage, setRandomPage] = useState(1)
+  const [movieID, SetMovieID] = useState<MovieIDProps[]>([])
+  const [movieDesc, SetMovieDesc] = useState<MovieDescProps>()
 
-  const listMovies = [
-    { title: 'The Godfather', year: '1972' },
-    { title: 'The Shawshank Redemption', year: '1994' },
-    { title: 'The Dark Knight', year: '2008' },
-    { title: 'The Godfather: Part II', year: '1974' },
-    { title: 'The Lord of the Rings: The Return of the King', year: '2003' },
-    { title: 'Pulp Fiction', year: '1994' },
-    { title: 'Schindler’s List', year: '1993' },
-    { title: 'The Good, the Bad and the Ugly', year: '1966' },
-  ]
-
-  useEffect(() => {
-    requestTrailer()
-  }, [requestTrailer])
-
-  const [randomMovie, setRandomMovie] = useState<RandomMovieProps>(
-    listMovies[Math.floor(Math.random() * listMovies.length)],
-  )
-  const [shuffleMovie, setShuffleMovie] = useState<ShuffleProps>()
-  const [trailer, setTrailer] = useState<string>()
-
-  // REQUEST API SHUFFLE
-  async function getRandomMovie() {
-    await fetch('/api')
-      .then((response) => response.json())
-      .then((movies) => {
-        const randomIndex = Math.floor(Math.random() * movies.length)
-        const getRandomMovie = movies[randomIndex]
-        setRandomMovie(getRandomMovie)
-      })
-      .catch((error) => console.error(error))
+  async function RandomNumberPage() {
+    const randomNumber = Math.floor(Math.random() * 194)
+    setRandomPage(randomNumber)
   }
 
-  async function requestApiShuffle() {
-    await axios
-      .request({
-        method: 'GET',
-        url: 'https://www.omdbapi.com/',
-        params: {
-          t: randomMovie?.title,
-          y: randomMovie?.year,
-          apikey: 'c3efd167',
-        },
-      })
-      .then(function (response) {
-        console.log(response.data)
-        setShuffleMovie(response.data)
-      })
+  async function getMoviesID() {
+    await RandomNumberPage()
+    try {
+      const params = {
+        api_key: '70f8af9fa4e1b9b6de11684d32a1d02c',
+        language: 'en-US',
+        sort_by: 'release_date.desc',
+        page: randomPage,
+        'release_date.gte': '1980-01-01',
+        'release_date.lte': '2023-02-26',
+        'vote_count.gte': 500,
+        'vote_average.gte': 6,
+        with_original_language: 'en',
+      }
+
+      const response = await axios.get(
+        'https://api.themoviedb.org/3/discover/movie',
+        { params },
+      )
+
+      const randomMovie =
+        response.data.results[
+          Math.floor(Math.random() * response.data.results.length)
+        ]
+
+      console.log(randomMovie)
+      SetMovieID([randomMovie.id])
+      getMoviesDesc()
+    } catch (error) {
+      console.error(error)
+    }
   }
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  async function requestTrailer() {
-    await axios
-      .request(optionsTrailer)
-      .then(function (response) {
-        setTrailer(response.data?.result?.youtubeTrailerVideoId)
-      })
-      .catch(function (error) {
-        console.error(error)
-      })
+  async function getMoviesDesc() {
+    try {
+      const params = {
+        api_key: '70f8af9fa4e1b9b6de11684d32a1d02c',
+        append_to_response: 'videos',
+      }
+
+      const response = await axios.get(
+        `https://api.themoviedb.org/3/movie/${movieID}?`,
+        { params },
+      )
+
+      SetMovieDesc(response.data)
+    } catch (error) {
+      console.error(error)
+    }
   }
 
-  const optionsTrailer = {
-    method: 'GET',
-    url: 'https://streaming-availability.p.rapidapi.com/v2/get/basic',
-    params: { country: 'us', imdb_id: shuffleMovie?.imdbID },
-    headers: {
-      'X-RapidAPI-Key': '4a48ec8ffamsh287812e16b63278p1e53efjsnda9233c75af2',
-      'X-RapidAPI-Host': 'streaming-availability.p.rapidapi.com',
-    },
-  }
-
-  async function handleButtonClick() {
-    getRandomMovie()
-    requestApiShuffle()
-    requestTrailer()
+  function handleButtonClick() {
+    getMoviesID()
   }
 
   function githuhRepo() {
@@ -133,17 +123,24 @@ export default function Home() {
       '_blank',
     )
   }
-  // skeleton loading antes de carregar os dados
+
+  const linkYoutube = movieDesc?.videos.results.find(
+    (video) =>
+      video.type === 'Trailer' &&
+      video.site === 'YouTube' &&
+      video.official === true,
+  )
+
   return (
     <main className={styles.main}>
       <Header />
       <div className={styles.mainContent}>
         <div className={styles.container}>
           <div className={styles.leftCol}>
-            {shuffleMovie ? (
+            {movieDesc ? (
               <Image
                 className={styles.banner}
-                src={shuffleMovie.Poster}
+                src={'https://image.tmdb.org/t/p/w500' + movieDesc.poster_path}
                 alt={'Image of movie'}
                 width={380}
                 height={562}
@@ -163,42 +160,42 @@ export default function Home() {
             <div className={styles.rightCol}>
               <div className={styles.headerContent}>
                 <div className={styles.titleContent}>
-                  {shuffleMovie ? (
-                    <h2 className={styles.title}>{shuffleMovie.Title}</h2>
+                  {movieDesc ? (
+                    <h2 className={styles.title}>{movieDesc.original_title}</h2>
                   ) : (
                     <div className={styles.skeletonContent} />
                   )}
-                  {shuffleMovie ? (
-                    <p className={styles.subtitle}>{shuffleMovie.Director}</p>
+                  {movieDesc ? (
+                    <p className={styles.subtitle}>{movieDesc.release_date}</p>
                   ) : (
                     <div className={styles.skeletonSubtitle} />
                   )}
                 </div>
                 <div className={styles.contentStars}>
-                  {shuffleMovie ? (
-                    <h2 className={styles.rating}>{shuffleMovie.Metascore}</h2>
+                  {movieDesc ? (
+                    <h2 className={styles.rating}>{movieDesc.vote_average}</h2>
                   ) : (
                     <div className={styles.skeletonRating} />
                   )}
                 </div>
               </div>
               <div className={styles.description}>
-                {shuffleMovie ? (
+                {movieDesc ? (
                   <h2 className={styles.subtitleDescription}>
-                    {shuffleMovie.Plot}
+                    {movieDesc.overview}
                   </h2>
                 ) : (
                   <div className={styles.skeletonDescription} />
                 )}
               </div>
               <div className={styles.trailerContainer}>
-                {shuffleMovie ? (
+                {movieDesc ? (
                   <iframe
                     style={{ borderRadius: 6 }}
                     width="560"
                     height="315"
                     className={styles.iframe}
-                    src={`https://youtube.com/embed/${trailer}`}
+                    src={`https://youtube.com/embed/` + linkYoutube?.key}
                     title="YouTube video player"
                     frameBorder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
