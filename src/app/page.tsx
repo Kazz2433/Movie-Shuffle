@@ -118,7 +118,7 @@ export default function Home() {
   async function getMovieStreamings(movieDesc: MovieDescProps) {
     try {
       const params = {
-        apiKey: 'qk6scRtP9siuCrfaUNQTLTDd1tIfLRbY4B2tGLzo',
+        apiKey: 'TmbVSkxIYgmy1maDLCkVexaeWw7VrBJsArijMBys',
       }
 
       const response = await axios.get(
