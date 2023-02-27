@@ -4,12 +4,12 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 import Image from 'next/image'
 
-import { Header } from '@/components/Header'
 import styles from './page.module.css'
 
 import gitSVG from '@/assets/Octicons-mark-github.svg'
 import linkedinSVG from '@/assets/linkedin.svg'
 import { ButtonStream } from '@/components/ButtonStream'
+import { Header } from '@/components/Header'
 
 interface MovieIDProps {
   id: number
@@ -46,13 +46,12 @@ interface MovieStreamProps {
 
 export default function Home() {
   const [randomPage, setRandomPage] = useState(1)
-  const [movieID, SetMovieID] = useState<MovieIDProps[]>([])
   const [movieDesc, SetMovieDesc] = useState<MovieDescProps>()
   const [movieStream, SetMovieStream] = useState<MovieStreamProps[]>([])
+  const [theme, setTheme] = useState('light')
 
   useEffect(() => {
-    handleButtonClick()
-    handleButtonClick()
+    getMoviesID()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -61,7 +60,7 @@ export default function Home() {
   }
 
   async function RandomNumberPage() {
-    const randomNumber = Math.floor(Math.random() * 194)
+    const randomNumber = Math.floor(Math.random() * 208)
     setRandomPage(randomNumber)
   }
 
@@ -91,14 +90,13 @@ export default function Home() {
         ]
 
       console.log(randomMovie)
-      SetMovieID([randomMovie.id])
-      getMoviesDesc()
+      getMoviesDesc(randomMovie.id)
     } catch (error) {
       console.error(error)
     }
   }
 
-  async function getMoviesDesc() {
+  async function getMoviesDesc(movieID: MovieIDProps) {
     try {
       const params = {
         api_key: '70f8af9fa4e1b9b6de11684d32a1d02c',
@@ -132,7 +130,7 @@ export default function Home() {
           return (
             stream.name === 'Netflix' ||
             stream.name === 'Amazon Prime' ||
-            stream.name === 'HBO Max' ||
+            stream.name === 'HBO MAX' ||
             stream.name === 'Hulu' ||
             stream.name === 'Disney+' ||
             stream.name === 'Apple TV+' ||
@@ -188,9 +186,17 @@ export default function Home() {
 
   const rating = movieDesc?.vote_average.toFixed(1)
 
+  function handleSwitchClick() {
+    if (theme === 'dark') {
+      setTheme('light')
+    } else {
+      setTheme('dark')
+    }
+  }
+
   return (
     <main className={styles.main}>
-      <Header />
+      <Header switchTeste={theme} onClickTeste={handleSwitchClick} />
       <div className={styles.mainContent}>
         <div className={styles.container}>
           <div className={styles.leftCol}>
@@ -199,11 +205,13 @@ export default function Home() {
                 className={styles.banner}
                 src={'https://image.tmdb.org/t/p/w500' + movieDesc.poster_path}
                 alt={'Image of movie'}
-                width={380}
-                height={562}
+                width={1024}
+                height={1024}
               />
             ) : (
-              <div className={styles.skeletonBanner} />
+              <div>
+                <div className={styles.skeletonBanner} />
+              </div>
             )}
           </div>
           <div className={styles.rightContainer}>
@@ -216,7 +224,7 @@ export default function Home() {
                     <div className={styles.skeletonContent} />
                   )}
                   {movieDesc ? (
-                    <p className={styles.subtitle}>{movieDesc.release_date}</p>
+                    <p className={styles.subtitle}>{movieDesc.runtime}min</p>
                   ) : (
                     <div className={styles.skeletonSubtitle} />
                   )}

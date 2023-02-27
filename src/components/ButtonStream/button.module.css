@@ -52,14 +52,14 @@
   filter: brightness(0.75);
   border: 0px solid transparent;
 
-  background: linear-gradient(to right, #111111, #000000);
+  background: linear-gradient(to right, #0a0a0a, #131313);
   transition: all 0.2s ease-out;
 }
 .Amazon:hover{
   cursor: pointer;
   filter: brightness(1);
   transform: scale(1.02);
-  border: 2px solid rgb(255, 137, 3);
+  border: 1px solid rgb(255, 137, 3);
 }
 
 

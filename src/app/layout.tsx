@@ -1,12 +1,11 @@
 import { ReactNode } from 'react'
-
 import styles from './layout.module.css'
-import './globals.css'
+import './global.css'
 
-import { Poppins } from '@next/font/google'
+import { Roboto } from '@next/font/google'
 
-const poppins = Poppins({
-  subsets: ['devanagari'],
+const roboto = Roboto({
+  subsets: ['latin'],
   weight: ['900'],
   adjustFontFallback: true,
 })
@@ -20,7 +19,7 @@ export const metadata = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" className={poppins.className}>
+    <html lang="en" className={roboto.className}>
       <head />
       <body className={styles.body}>{children}</body>
     </html>

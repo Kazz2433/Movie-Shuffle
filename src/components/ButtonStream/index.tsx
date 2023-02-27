@@ -24,7 +24,7 @@ function getStreamClass(streamName: string) {
       return styles.PrimeVideo
     case 'Netflix':
       return styles.Netflix
-    case 'HBO':
+    case 'HBO MAX':
       return styles.Hbo
     case 'YouTube':
       return styles.YouTube
@@ -49,7 +49,7 @@ function getStreamSvg(streamName: string) {
       return AmazonSVG
     case 'Netflix':
       return netflixSVG
-    case 'HBO':
+    case 'HBO MAX':
       return hboSVG
     case 'Hulu':
       return huluSVG
