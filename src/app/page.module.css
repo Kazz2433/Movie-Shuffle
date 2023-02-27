@@ -2,47 +2,43 @@
 .main {
   display: flex;
   flex-direction: column;
-  max-width: 1440px;
-  width: 100%;
+  max-width: 1640px;
+  width: 100vw;
+  height: 100%;
   font-family: 'Poppins', sans-serif;
   justify-content: center;
-  margin: 0 auto;
-  padding: 0 24px;
+  align-items: start;
+  margin: 32px auto;
 }
 
 .mainContent {
   display: flex;
   flex-direction: column;
   width: 100%;
+  height: 100%;
 }
 
 .container {
   background-color: var(--gray-500);
   width: 100%;
-  height: max-content;
+  height: 100%;
   display: flex;
-  flex-direction: row;
-  align-items: start;
-  justify-content: center;
+  align-items: center;
   border-radius: 12px;
-  padding: 24px;
+  padding: 28px 28px;
   gap: 24px;
-  max-width: 1440px;
 }
 
 .iframe {
-  width: 562px;
-  height: 315px;
+  width: 720px;
+  height: 380px;
+  display: flex;
 }
 
 .leftCol {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  height: 635px;
-  max-width: 100%;
-  gap: 24px;
+  height: 100%;
+  width: 740px;
+  gap: 42px;
 }
 
 .buttonsSocial {
@@ -51,31 +47,36 @@
   width: 100%;
 }
 
+.buttonsSocial2 {
+  display: flex;
+  width: 100%;
+  flex: 1;
+  gap: 24px
+}
+
 .rightContainer{
-  flex: 1 ;
-  height: 635px;
+  height: 100%;
   width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   gap: 24px;
   
 }
 .rightCol {
   flex-direction: column;
   background-color: var(--gray-800);
-  height: 535px;
+  height: max-content;
+  width: 100%;
   display: flex;
   justify-content: start;
   border-radius: 8px;
-  padding: 24px;
-  max-width: 100%;
+  padding: 32px;
 }
 
 .banner {
   border-radius: 12px;
-  max-width: 100%;
-  max-height: 535px;
+  width: 100%;
+  height: 100%;
 }
 
 .title {
@@ -140,15 +141,13 @@
 }
 
 .shuffleButton {
-  background: linear-gradient(to right, #000000, #0f0f0f);
-  color: var(--green-500);
-  filter: brightness(0.7);
+  background-color: var(--green-500);
+  color: black;
   font-weight: 900;
   font-family: 'Poppins', sans-serif;
-
   padding: 16px;
   width: 100%;
-  height: 63px;
+  height: 74px;
 
   border: 1px solid var(--green-500);
   border-radius: 6px;
@@ -158,34 +157,53 @@
 
 .shuffleButton:hover {
   cursor: pointer;
-  transform: scale(1.05);
-  background: linear-gradient(to right, var(--green-500), var(--green-800));
-  color: var(--gray-800);
+  background-color: #0c0c0c;
+  color: var(--green-500);
   filter: brightness(1.35) saturate(1.5);
 }
 
 .trailerContainer {
-  display: flex;
-  align-items: start;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
   gap: 34px;
 }
 
+
+.trailerContainer2 {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
 .buttonContainer {
-  flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  height: 315px;
-  gap: 28px;
+  gap: 12px;
+  justify-content: space-between;
+  height: max-content;
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  max-height: 100%;
   
 }
+
+.buttonView {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  
+}
+
+
 
 .buttonGithub {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
   text-transform: uppercase;
   font-weight: 900;
   font-family: 'Poppins', sans-serif;
@@ -193,8 +211,9 @@
   background-color: var(--white);
   color: var(--gray-800);
 
-  padding: 20px;
-  width: 100%;
+  padding: 24px;
+  width: 74px;
+  height: 100%;
 
   border: none;
   border-radius: 6px;
@@ -212,17 +231,18 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
   text-transform: uppercase;
   font-weight: 900;
   font-family: 'Poppins', sans-serif;
 
   filter: brightness(0.75);
-  background: linear-gradient(to right, rgb(7, 17, 39), #103053);
+  background-color: #072242;
   color: var(--white);
 
-  padding: 20px;
-  width: 100%;
+  padding: 24px;
+  width: 74px;
+  height: 100%;
+
 
   border: none;
   border-radius: 6px;
@@ -236,33 +256,6 @@
   transform: scale(1.05);
 }
 
-.buttonProject {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  text-transform: uppercase;
-  font-weight: 900;
-  font-family: 'Poppins', sans-serif;
-
-  filter: brightness(0.75);
-  background: linear-gradient(to right, rgb(165, 9, 48), #e20c42);
-  color: var(--white);
-
-  padding: 20px;
-  width: 100%;
-
-  border: none;
-  border-radius: 6px;
-
-  transition: all 0.2s ease-out;
-}
-
-.buttonProject:hover {
-  cursor: pointer;
-  filter: brightness(1.45) saturate(1.5);
-  transform: scale(1.05);
-}
 
 /* Efeito de skelleton*/
 .skeletonBanner {
@@ -475,12 +468,12 @@
   }
 }
 
-@media (max-width: 1280px) {
+@media (max-width: 1024px) {
   .main {
   display: flex;
   flex-direction: column;
-  max-width: 1280px;
   width: 100%;
+  height: 100%;
   font-family: 'Poppins', sans-serif;
   justify-content: center;
   margin: 0 auto;
@@ -508,8 +501,8 @@
 }
 
 .iframe {
-  width: 100%;
-  height: 562px;
+  width: 1000px;
+  height: 100%;
 }
 
 .leftCol {
@@ -577,6 +570,46 @@
 .buttonsSocial {
   display: flex;
   flex-direction: column;
+  gap: 28px;
+  width: 100%;
+}
+
+
+.buttonsSocial2 {
+  margin-top: 12px;
+  display: flex;
+  gap: 24px;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between
+}
+
+.shuffleButton{
+  height: 74px;
+  max-width: 100%;
+}
+
+.buttonGithub {
+  width: 100%;
+}
+.buttonLinkedin {
+  width: 100%;
+}
+
+.buttonLinkedin:hover {
+  cursor: pointer;
+  filter: brightness(1.45) saturate(1.5);
+  transform: scale(1.05);
+}
+
+
+.buttonsSocial::before {
+  content: '';
+  background: #ebebeb5d;
+  width: 100%;
+  height: 1px;
+  border-radius: 999px;
+  margin-bottom: 14px;
 }
 }
 
@@ -586,6 +619,7 @@
   flex-direction: column;
   min-width: 320px;
   width: 100%;
+  height: 100%;
   font-family: 'Poppins', sans-serif;
   justify-content: center;
   margin: 0 auto;
@@ -691,12 +725,41 @@
   gap: 24px;
   flex-direction: column;
 }
+
+.buttonsSocial2 {
+  margin-top: 12px;
+  display: flex;
+  gap: 24px;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between
+}
+
+.shuffleButton{
+  height: 74px;
+}
+
+
+.buttonGithub {
+  width: 100%;
+}
+.buttonLinkedin {
+  width: 100%;
+}
+
+.buttonLinkedin:hover {
+  cursor: pointer;
+  filter: brightness(1.45) saturate(1.5);
+  transform: scale(1.05);
+}
+
+
 .buttonsSocial::before {
   content: '';
-  background: #ffffff23;
+  background: #ebebeb5d;
   width: 100%;
   height: 1px;
   border-radius: 999px;
-  margin-bottom: 12px;
+  margin-bottom: 14px;
 }
 }

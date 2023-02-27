@@ -1,6 +1,7 @@
-.buttonNetflix {
+.Netflix {
   height: 64px;
   border: none;
+  width: 100%;
   border-radius: 4px;
   display: flex;
   align-items: center;
@@ -12,17 +13,17 @@
 
   transition: all 0.2s ease-out;
 }
-.buttonNetflix:hover{
+.Netflix:hover{
   cursor: pointer;
   filter: brightness(1.45) saturate(1.5);
-  transform: scale(1.03);
+  transform: scale(1.02);
   border: 1px solid rgb(192, 12, 36);
 }
 
-
-.buttonPrime {
+.PrimeVideo {
   height: 64px;
   border: none;
+  width: 100%;
   border-radius: 4px;
   display: flex;
   align-items: center;
@@ -33,16 +34,40 @@
   background: linear-gradient(to right, #0a0c13, #1A1C2D);
   transition: all 0.2s ease-out;
 }
-.buttonPrime:hover{
+.PrimeVideo:hover{
   cursor: pointer;
   filter: brightness(1.45) saturate(1.5);
-  transform: scale(1.03);
+  transform: scale(1.02);
   border: 1px solid rgb(12, 126, 192);
 }
 
-.buttonHbo {
+.Amazon {
+  height: 64px;
+  width: 100%;
+  border: none;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: brightness(0.75);
+  border: 0px solid transparent;
+
+  background: linear-gradient(to right, #111111, #000000);
+  transition: all 0.2s ease-out;
+}
+.Amazon:hover{
+  cursor: pointer;
+  filter: brightness(1);
+  transform: scale(1.02);
+  border: 2px solid rgb(255, 137, 3);
+}
+
+
+
+.Hbo {
   height: 64px;
   border: none;
+  width: 100%;
   border-radius: 4px;
   display: flex;
   align-items: center;
@@ -54,16 +79,39 @@
   transition: all 0.2s ease-out;
 }
 
-.buttonHbo:hover{
+.Hbo:hover{
   cursor: pointer;
   filter: brightness(1.45) saturate(1.5);
-  transform: scale(1.03);
+  transform: scale(1.02);
   border: 1px solid rgb(253, 247, 255);
 }
 
-.buttonHulu {
+.YouTube {
   height: 64px;
   border: none;
+  width: 100%;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: brightness(0.75);
+  border: 0px solid transparent;
+
+  background: linear-gradient(to right, #dfdfdf, #ffffff);
+  transition: all 0.2s ease-out;
+}
+
+.YouTube:hover{
+  cursor: pointer;
+  filter: brightness(1);
+  transform: scale(1.02);
+  border: 1px solid rgb(255, 0, 43);
+}
+
+.Hulu {
+  height: 64px;
+  border: none;
+  width: 100%;
   border-radius: 4px;
   display: flex;
   align-items: center;
@@ -74,18 +122,104 @@
   background: linear-gradient(to right, #091926, #0D3648);
   transition: all 0.2s ease-out;
 }
-.buttonHulu:hover{
+.Hulu:hover{
   cursor: pointer;
   filter: brightness(1.45) saturate(1.5);
-  transform: scale(1.03);
+  transform: scale(1.02);
   border: 1px solid rgb(29, 223, 174);
 }
 
-.buttonContainer {
+.iTunes {
+  height: 64px;
+  border: none;
+  width: 100%;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: brightness(0.75);
+  border: 0px solid transparent;
+
+  background: linear-gradient(to right, #660421, #075661);
+  transition: all 0.2s ease-out;
+}
+.iTunes:hover{
+  cursor: pointer;
+  filter: brightness(1) saturate(1.2);
+  transform: scale(1.02);
+  border: 1px solid rgb(255, 19, 78);
+}
+
+.AppleTV {
+  height: 64px;
+  border: none;
+  width: 100%;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: brightness(0.75);
+  border: 0px solid transparent;
+
+  background: linear-gradient(to right, #e7e7e7, #ffffff);
+  transition: all 0.2s ease-out;
+}
+.AppleTV:hover{
+  cursor: pointer;
+  filter: brightness(1);
+  transform: scale(1.02);
+  border: 1px solid rgb(255, 255, 255);
+}
+
+.Disney {
   flex: 1;
+  width: 100%;
+  height: 64px;
+  border: none;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: brightness(0.75);
+  border: 0px solid transparent;
+
+  background: linear-gradient(to right, #02071a, #0c1e70);
+  transition: all 0.2s ease-out;
+}
+
+.Disney:hover{
+  cursor: pointer;
+  filter: brightness(1);
+  transform: scale(1.02);
+  border: 1px solid #0066ff;
+}
+
+.GooglePlay {
+  height: 64px;
+  border: none;
+  width: 100%;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: brightness(0.75);
+  border: 0px solid transparent;
+
+  background: linear-gradient(to right, #100f0d, #100f0d);
+  transition: all 0.2s ease-out;
+}
+
+.GooglePlay:hover{
+  cursor: pointer;
+  filter: brightness(1);
+  transform: scale(1.02);
+  border: 1px solid rgb(255, 145, 0);
+}
+
+
+.buttonContainer {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  height: 315px;
-  gap: 28px;
+  width: 100%;
+  height: 100%;
 }

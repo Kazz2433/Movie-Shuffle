@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import axios from 'axios'
 import Image from 'next/image'
 
@@ -37,10 +37,28 @@ interface MovieDescProps {
   }
 }
 
+interface MovieStreamProps {
+  name: string
+  type: string
+  web_url: string
+  format: string
+}
+
 export default function Home() {
   const [randomPage, setRandomPage] = useState(1)
   const [movieID, SetMovieID] = useState<MovieIDProps[]>([])
   const [movieDesc, SetMovieDesc] = useState<MovieDescProps>()
+  const [movieStream, SetMovieStream] = useState<MovieStreamProps[]>([])
+
+  useEffect(() => {
+    handleButtonClick()
+    handleButtonClick()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  function handleButtonClick() {
+    getMoviesID()
+  }
 
   async function RandomNumberPage() {
     const randomNumber = Math.floor(Math.random() * 194)
@@ -93,21 +111,58 @@ export default function Home() {
       )
 
       SetMovieDesc(response.data)
+      getMovieStreamings(response.data)
     } catch (error) {
       console.error(error)
     }
   }
 
-  function handleButtonClick() {
-    getMoviesID()
+  async function getMovieStreamings(movieDesc: MovieDescProps) {
+    try {
+      const params = {
+        apiKey: 'qk6scRtP9siuCrfaUNQTLTDd1tIfLRbY4B2tGLzo',
+      }
+
+      const response = await axios.get(
+        `https://api.watchmode.com/v1/title/${movieDesc.imdb_id}/sources/?`,
+        { params },
+      )
+      const filterStream = response.data.filter(
+        (stream: { name: string; type: string; format: string }) => {
+          return (
+            stream.name === 'Netflix' ||
+            stream.name === 'Amazon Prime' ||
+            stream.name === 'HBO Max' ||
+            stream.name === 'Hulu' ||
+            stream.name === 'Disney+' ||
+            stream.name === 'Apple TV+' ||
+            (stream.type !== 'subscription'
+              ? (stream.name === 'Amazon' &&
+                  stream.type === 'rent' &&
+                  stream.format === 'HD') ||
+                (stream.name === 'YouTube' &&
+                  stream.type === 'rent' &&
+                  stream.format === 'HD') ||
+                (stream.name === 'Google Play' &&
+                  stream.type === 'rent' &&
+                  stream.format === 'HD') ||
+                (stream.name === 'iTunes' &&
+                  stream.type === 'rent' &&
+                  stream.format === 'HD')
+              : null)
+          )
+        },
+      )
+
+      SetMovieStream(filterStream)
+      console.log(response.data)
+    } catch (error) {
+      console.error(error)
+    }
   }
 
   function githuhRepo() {
     window.open('https://github.com/revogabe/Movie-Shuffle', '_blank')
-  }
-
-  function projectWeek() {
-    window.open('https://github.com/revogabe', '_blank')
   }
 
   function linkedinDaniel() {
@@ -131,6 +186,8 @@ export default function Home() {
       video.official === true,
   )
 
+  const rating = movieDesc?.vote_average.toFixed(1)
+
   return (
     <main className={styles.main}>
       <Header />
@@ -148,13 +205,6 @@ export default function Home() {
             ) : (
               <div className={styles.skeletonBanner} />
             )}
-
-            <button
-              className={styles.shuffleButton}
-              onClick={handleButtonClick}
-            >
-              SHUFFLE
-            </button>
           </div>
           <div className={styles.rightContainer}>
             <div className={styles.rightCol}>
@@ -173,7 +223,7 @@ export default function Home() {
                 </div>
                 <div className={styles.contentStars}>
                   {movieDesc ? (
-                    <h2 className={styles.rating}>{movieDesc.vote_average}</h2>
+                    <h2 className={styles.rating}>{rating}</h2>
                   ) : (
                     <div className={styles.skeletonRating} />
                   )}
@@ -189,48 +239,58 @@ export default function Home() {
                 )}
               </div>
               <div className={styles.trailerContainer}>
-                {movieDesc ? (
-                  <iframe
-                    style={{ borderRadius: 6 }}
-                    width="560"
-                    height="315"
-                    className={styles.iframe}
-                    src={`https://youtube.com/embed/` + linkYoutube?.key}
-                    title="YouTube video player"
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  ></iframe>
-                ) : (
-                  <div className={styles.skeletonTrailer} />
-                )}
+                <div className={styles.trailerContainer2}>
+                  {movieDesc ? (
+                    <iframe
+                      style={{ borderRadius: 6 }}
+                      width="1000"
+                      height="100"
+                      className={styles.iframe}
+                      src={`https://youtube.com/embed/` + linkYoutube?.key}
+                      title="YouTube video player"
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    ></iframe>
+                  ) : (
+                    <div className={styles.skeletonTrailer} />
+                  )}
+                </div>
                 <div className={styles.buttonContainer}>
-                  <ButtonStream />
+                  {movieStream.map((stream, index) => (
+                    <ButtonStream
+                      key={index}
+                      nameStream={stream.name}
+                      urlStream={stream.web_url}
+                    />
+                  ))}
                 </div>
               </div>
             </div>
             <div className={styles.buttonsSocial}>
-              <button onClick={projectWeek} className={styles.buttonProject}>
-                📆 ONE WEEK PROJECT
-              </button>
-              <button onClick={githuhRepo} className={styles.buttonGithub}>
-                <Image src={gitSVG} alt="" width={24} />
-                Repository
-              </button>
               <button
-                onClick={linkedinDaniel}
-                className={styles.buttonLinkedin}
+                className={styles.shuffleButton}
+                onClick={handleButtonClick}
               >
-                <Image src={linkedinSVG} alt="" width={24} />
-                Daniel Gabriel
+                SHUFFLE
               </button>
-              <button
-                onClick={linkedinArmitage}
-                className={styles.buttonLinkedin}
-              >
-                <Image src={linkedinSVG} alt="" width={24} />
-                Kelvin Quida
-              </button>
+              <div className={styles.buttonsSocial2}>
+                <button onClick={githuhRepo} className={styles.buttonGithub}>
+                  <Image src={gitSVG} alt="" width={24} />
+                </button>
+                <button
+                  onClick={linkedinDaniel}
+                  className={styles.buttonLinkedin}
+                >
+                  <Image src={linkedinSVG} alt="" width={24} />
+                </button>
+                <button
+                  onClick={linkedinArmitage}
+                  className={styles.buttonLinkedin}
+                >
+                  <Image src={linkedinSVG} alt="" width={24} />
+                </button>
+              </div>
             </div>
           </div>
         </div>
