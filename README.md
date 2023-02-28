@@ -1,6 +1,6 @@
 # 🎬 MovieS | Shuffle Movie _by RouterDev_
 
-#### **An aplication that can generate random a movie.**
+#### **An aplication that can generate a random movie.**
 
 ---
 ## 🌐 Deploy
