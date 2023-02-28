@@ -50,6 +50,9 @@ export default function Home() {
   const [movieStream, SetMovieStream] = useState<MovieStreamProps[]>([])
   const [theme, setTheme] = useState('light')
 
+  const KEY_MOVIE_DB = process.env.KEY_MOVIE_DB
+  const KEY_STREAMING = process.env.KEY_STREAMS
+
   useEffect(() => {
     getMoviesID()
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -68,7 +71,7 @@ export default function Home() {
     await RandomNumberPage()
     try {
       const params = {
-        api_key: '70f8af9fa4e1b9b6de11684d32a1d02c',
+        api_key: KEY_MOVIE_DB,
         language: 'en-US',
         sort_by: 'release_date.desc',
         page: randomPage,
@@ -99,7 +102,7 @@ export default function Home() {
   async function getMoviesDesc(movieID: MovieIDProps) {
     try {
       const params = {
-        api_key: '70f8af9fa4e1b9b6de11684d32a1d02c',
+        api_key: KEY_MOVIE_DB,
         append_to_response: 'videos',
       }
 
@@ -118,7 +121,7 @@ export default function Home() {
   async function getMovieStreamings(movieDesc: MovieDescProps) {
     try {
       const params = {
-        apiKey: 'TmbVSkxIYgmy1maDLCkVexaeWw7VrBJsArijMBys',
+        apiKey: KEY_STREAMING,
       }
 
       const response = await axios.get(
