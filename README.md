@@ -1,38 +1,60 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 🎬 MovieS | Shuffle Movie _by RouterDev_
 
-## Getting Started
+#### **An aplication that can generate random a movie.**
 
-First, run the development server:
+---
+## 🌐 Deploy
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+[Website Live](https://movie-shuffle.vercel.app/)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📷 Product features
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+![Introduction Gif](src/assets/Composição-1.gif)
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### The Motivation for Development
 
-## Learn More
+🙋 Hey guys, I have some really cool news to share with you! My teammate and I created a random movie generator using NextJS 13 by Vercel.
 
-To learn more about Next.js, take a look at the following resources:
+**You know when you spend all night searching for a movie to watch and end up choosing something not so great? Well, we thought about that and created a solution to solve that problem!**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+This project is part of a challenge we're doing, creating a project each week to enhance our knowledge of NextJS. And I can tell you that we're becoming more specialized in this amazing technology every day!
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## ⚙️ How to configure
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Clone Repository
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+    git clone https://github.com/revogabe/Movie-Shuffle
+
+### Run Dev
+
+Install Dependencies:
+
+    yarn install
+
+Run Front:
+
+    yarn run dev
+
+---
+
+## 🌐 Technologies used
+
+- [Next.JS 13](https://nextjs.org/)
+- [Axios](https://axios-http.com/)
+- [TMBD API](https://www.themoviedb.org/documentation/api)
+- [Watchmode API](https://api.watchmode.com/)
+
+---
+
+## 🙋 Authors
+
+**RouterDev | Team Members**
+
+- [Daniel Gabriel](https://github.com/revogabe)
+- [Kelvin Quida](https://github.com/kazz2433)
